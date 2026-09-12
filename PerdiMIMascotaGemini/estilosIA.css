@@ -1,214 +1,558 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Perdí Mi Mascota: Portal comunitario para el reporte y búsqueda de perros y gatos extraviados.">
-  <title>Perdí Mi Mascota</title>
-  <link rel="stylesheet" href="estilosIA.css">
-</head>
-<body>
-  <!-- Enlace accesible de salto al contenido -->
-  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+/* ==========================================================================
+   1. VARIABLES DE SISTEMA Y THEME DARK (Tokens de Diseño)
+   ========================================================================== */
+:root {
+  /* Paleta Base Oscura (Cálida y balanceada) */
+  --color-bg-base: #121417;
+  --color-bg-surface: #1a1e24;
+  --color-bg-surface-elevated: #242932;
+  --color-border: #323946;
+  --color-border-hover: #4a5468;
 
-  <!-- Encabezado y Navegación Principal -->
-  <header class="site-header">
-    <div class="container header-container">
-      <div class="brand">
-        <span class="brand-icon" aria-hidden="true">🐾</span>
-        <span class="brand-title">Perdí Mi Mascota</span>
-      </div>
-      <nav class="main-nav" aria-label="Navegación principal">
-        <ul class="nav-list">
-          <li><a href="#mascotas" class="nav-link">Mascotas</a></li>
-          <li><a href="#contacto" class="nav-link">Contacto</a></li>
-          <li><a href="#responsable" class="nav-link">Responsable</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  /* Acentos Cálidos */
+  --color-accent-primary: #e67e22;       /* Naranja cálido */
+  --color-accent-primary-hover: #f39c12;
+  --color-accent-subtle: rgba(230, 126, 34, 0.15);
 
-  <main id="contenido-principal" class="main-content">
-    
-    <!-- Hero / Presentación -->
-    <section class="hero-section">
-      <div class="container hero-content">
-        <h1 class="hero-title">Ayúdanos a devolverlos a su hogar</h1>
-        <p class="hero-subtitle">
-          Explora los reportes recientes de mascotas perdidas. Cada pista cuenta para un reencuentro.
-        </p>
-      </div>
-    </section>
+  /* Tipografía y Contraste (Cumple WCAG AA/AAA) */
+  --color-text-main: #f3f4f6;
+  --color-text-muted: #9ca3af;
+  --color-text-inverse: #0f1115;
 
-    <!-- Sección del Listado y Filtros -->
-    <section id="mascotas" class="catalog-section" aria-labelledby="titulo-catalogo">
-      <div class="container">
-        <h2 id="titulo-catalogo" class="sr-only">Listado de mascotas perdidas</h2>
+  /* Layout y Espaciado */
+  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --container-max-width: 1200px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
 
-        <!-- Segmented Control implementado con CSS Puro (:checked) -->
-        <div class="filter-controls" role="group" aria-label="Filtrar por tipo de mascota">
-          <input type="radio" name="categoria" id="filtro-todos" class="filter-radio" checked>
-          <label for="filtro-todos" class="filter-chip">
-            <span class="chip-icon" aria-hidden="true">🔍</span> Todos
-          </label>
+  /* Sombras y Elevaciones */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
 
-          <input type="radio" name="categoria" id="filtro-perros" class="filter-radio">
-          <label for="filtro-perros" class="filter-chip">
-            <svg class="chip-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M4.5 10.5C3.67 10.5 3 11.17 3 12s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm15 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM12 7.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5zm-5 4c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.07-2.02 3.97L15 19H9l.02-3.53C7.8 14.57 7 13.13 7 11.5z"/>
-            </svg>
-            Perros
-          </label>
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-          <input type="radio" name="categoria" id="filtro-gatos" class="filter-radio">
-          <label for="filtro-gatos" class="filter-chip">
-            <svg class="chip-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 11c-2.5 0-4.5 2-4.5 4.5S9.5 20 12 20s4.5-2 4.5-4.5S14.5 11 12 11zm-5.5-6L4 9l3.5 1.5L6.5 5zm11 0L16.5 9l3.5 1.5L17.5 5zM12 7c-2.8 0-5.2 1.4-6.6 3.5L8.5 12c1-.6 2.2-1 3.5-1s2.5.4 3.5 1l3.1-1.5C17.2 8.4 14.8 7 12 7z"/>
-            </svg>
-            Gatos
-          </label>
+/* ==========================================================================
+   2. RESET Y ESTÁNDARES GLOBALES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-          <!-- Grilla de Tarjetas -->
-          <div class="cards-grid">
-            
-            <!-- PERRO 1 -->
-            <article class="pet-card cat-perros">
-              <div class="card-image-wrapper">
-                <img src="imagenes/perro1.jpg" alt="Fotografía de Rocky, perro mestizo marrón con pecho blanco" class="pet-img" loading="lazy">
-                <span class="category-badge">Perro</span>
-              </div>
-              <div class="card-body">
-                <h3 class="pet-name">Rocky</h3>
-                <p class="pet-meta">Visto por última vez: <strong>Plaza Moreno</strong></p>
-                <p class="pet-desc">Mestizo tamaño mediano, pelaje castaño claro y pecho blanco. Llevaba collar de cuero gastado sin placa.</p>
-                <a href="info/perro1.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Rocky">
-                  <span>Info</span>
-                  <span class="pdf-tag" aria-hidden="true">PDF</span>
-                </a>
-              </div>
-            </article>
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
 
-            <!-- PERRO 2 -->
-            <article class="pet-card cat-perros">
-              <div class="card-image-wrapper">
-                <img src="imagenes/perro2.jpg" alt="Fotografía de Luna, perra Golden Retriever dorada" class="pet-img" loading="lazy">
-                <span class="category-badge">Perro</span>
-              </div>
-              <div class="card-body">
-                <h3 class="pet-name">Luna</h3>
-                <p class="pet-meta">Vista por última vez: <strong>Parque San Martín</strong></p>
-                <p class="pet-desc">Golden Retriever hembra adulta, color dorado claro. Es muy dócil pero asustadiza con ruidos fuertes.</p>
-                <a href="info/perro2.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Luna">
-                  <span>Info</span>
-                  <span class="pdf-tag" aria-hidden="true">PDF</span>
-                </a>
-              </div>
-            </article>
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-            <!-- PERRO 3 -->
-            <article class="pet-card cat-perros">
-              <div class="card-image-wrapper">
-                <img src="imagenes/perro3.jpg" alt="Fotografía de Milo, cachorro de manto negro y patas marrones" class="pet-img" loading="lazy">
-                <span class="category-badge">Perro</span>
-              </div>
-              <div class="card-body">
-                <h3 class="pet-name">Milo</h3>
-                <p class="pet-meta">Visto por última vez: <strong>Zona Estación Terminal</strong></p>
-                <p class="pet-desc">Cachorro de 7 meses, manto negro con hocico tostado. Requiere medicación diaria para la piel.</p>
-                <a href="info/perro3.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Milo">
-                  <span>Info</span>
-                  <span class="pdf-tag" aria-hidden="true">PDF</span>
-                </a>
-              </div>
-            </article>
+/* Enlace de accesibilidad para lectores de pantalla */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--color-accent-primary);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  z-index: 10000;
+  transition: top 0.2s ease;
+  text-decoration: none;
+}
 
-            <!-- GATO 1 -->
-            <article class="pet-card cat-gatos">
-              <div class="card-image-wrapper">
-                <img src="imagenes/gato1.jpg" alt="Fotografía de Oliver, gato atigrado gris con ojos verdes" class="pet-img" loading="lazy">
-                <span class="category-badge">Gato</span>
-              </div>
-              <div class="card-body">
-                <h3 class="pet-name">Oliver</h3>
-                <p class="pet-meta">Visto por última vez: <strong>Barrio Norte</strong></p>
-                <p class="pet-desc">Gato macho castrado, atigrado en tonos grises y blancos. Tiene una pequeña muesca en la oreja izquierda.</p>
-                <a href="info/gato1.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Oliver">
-                  <span>Info</span>
-                  <span class="pdf-tag" aria-hidden="true">PDF</span>
-                </a>
-              </div>
-            </article>
+.skip-link:focus {
+  top: 1rem;
+}
 
-            <!-- GATO 2 -->
-            <article class="pet-card cat-gatos">
-              <div class="card-image-wrapper">
-                <img src="imagenes/gato2.jpg" alt="Fotografía de Mía, gata siamesa con ojos azules" class="pet-img" loading="lazy">
-                <span class="category-badge">Gato</span>
-              </div>
-              <div class="card-body">
-                <h3 class="pet-name">Mía</h3>
-                <p class="pet-meta">Vista por última vez: <strong>Zona Facultad de Informática</strong></p>
-                <p class="pet-desc">Patrón de coloración tipo siamés tradicional, ojos celestes brillantes. Muy tímida ante desconocidos.</p>
-                <a href="info/gato2.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Mía">
-                  <span>Info</span>
-                  <span class="pdf-tag" aria-hidden="true">PDF</span>
-                </a>
-              </div>
-            </article>
+/* Clases de utilidad */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
-            <!-- GATO 3 -->
-            <article class="pet-card cat-gatos">
-              <div class="card-image-wrapper">
-                <img src="imagenes/gato3.jpg" alt="Fotografía de Simón, gato negro de pelo corto con collar rojo" class="pet-img" loading="lazy">
-                <span class="category-badge">Gato</span>
-              </div>
-              <div class="card-body">
-                <h3 class="pet-name">Simón</h3>
-                <p class="pet-meta">Visto por última vez: <strong>Paseo del Bosque</strong></p>
-                <p class="pet-desc">Totalmente negro, contextura esbelta, ojos amarillos. Llevaba collar rojo elástico con cascabel plateado.</p>
-                <a href="info/gato3.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Simón">
-                  <span>Info</span>
-                  <span class="pdf-tag" aria-hidden="true">PDF</span>
-                </a>
-              </div>
-            </article>
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
 
-          </div>
-        </div>
-      </div>
-    </section>
+/* ==========================================================================
+   3. HEADER Y NAVEGACIÓN
+   ========================================================================== */
+.site-header {
+  background-color: rgba(26, 30, 36, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-    <!-- Sección de Información de Contacto -->
-    <section id="contacto" class="contact-section" aria-labelledby="titulo-contacto">
-      <div class="container form-container">
-        <h2 id="titulo-contacto" class="section-title">Información de Contacto</h2>
-        <p class="section-desc">¿Viste a alguna de las mascotas o necesitas reportar una? Déjanos tus datos.</p>
-        
-        <!-- Formulario preparado para endpoints backend como Formspree o controladores POST -->
-        <form class="contact-form" action="#" method="POST" novalidate>
-          <div class="form-group">
-            <label for="nombre" class="form-label">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Ej. Juan Pérez" required autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label for="correo" class="form-label">Correo electrónico</label>
-            <input type="email" id="correo" name="correo" class="form-input" placeholder="nombre@ejemplo.com" required autocomplete="email">
-          </div>
-          <button type="submit" class="btn-submit">Enviar Notificación</button>
-        </form>
-      </div>
-    </section>
-  </main>
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+}
 
-  <!-- Pie de Página e Información del Mantenedor -->
-  <footer id="responsable" class="site-footer">
-    <div class="container footer-content">
-      <div class="maintainer-info">
-        <h3 class="maintainer-heading">Mantenimiento del sitio</h3>
-        <p class="maintainer-name">Desarrollado y gestionado por <strong>Javier Arias</strong></p>
-      </div>
-      <p class="copyright-text">&copy; 2026 Perdí Mi Mascota. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-</body>
-</html>
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  font-size: 1.6rem;
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.02em;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-text-main);
+  background-color: var(--color-bg-surface-elevated);
+}
+
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
+.hero-section {
+  padding: 4rem 0 2rem;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-main);
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   5. CONTROLES DE FILTRADO (Segmented Control CSS Puro)
+   ========================================================================== */
+.catalog-section {
+  padding: 2rem 0 5rem;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+/* Ocultar visualmente los inputs radio sin romper la accesibilidad por teclado */
+.filter-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.chip-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-chip:hover {
+  background-color: var(--color-bg-surface-elevated);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-main);
+}
+
+/* Estado Focus accesible para navegación por tabs */
+.filter-radio:focus-visible + .filter-chip {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* Estado Seleccionado del Segmented Control */
+.filter-radio:checked + .filter-chip {
+  background-color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(230, 126, 34, 0.4);
+}
+
+/* Lógica Reactiva de Filtrado CSS Puro */
+#filtro-perros:checked ~ .cards-grid .pet-card:not(.cat-perros) {
+  display: none;
+}
+
+#filtro-gatos:checked ~ .cards-grid .pet-card:not(.cat-gatos) {
+  display: none;
+}
+
+/* ==========================================================================
+   6. GRILLA DE MASCOTAS Y TARJETAS (Cards)
+   ========================================================================== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.pet-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+}
+
+.pet-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Contenedor de la Foto: Foco visual primario */
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 66.66%; /* Aspect ratio 3:2 */
+  background-color: #0b0c0e;
+  overflow: hidden;
+}
+
+.pet-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.pet-card:hover .pet-img {
+  transform: scale(1.03);
+}
+
+.category-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  background-color: rgba(18, 20, 23, 0.85);
+  backdrop-filter: blur(4px);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+/* Cuerpo de la Tarjeta */
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.pet-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 0.25rem;
+}
+
+.pet-meta {
+  font-size: 0.85rem;
+  color: var(--color-accent-primary-hover);
+  margin-bottom: 0.85rem;
+}
+
+.pet-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Botón Info integrado en la tarjeta */
+.btn-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-main);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.pdf-tag {
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.btn-info:hover,
+.btn-info:focus-visible {
+  background-color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  color: #ffffff;
+}
+
+.btn-info:hover .pdf-tag,
+.btn-info:focus-visible .pdf-tag {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   7. FORMULARIO DE CONTACTO
+   ========================================================================== */
+.contact-section {
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 4.5rem 0;
+}
+
+.form-container {
+  max-width: 580px;
+}
+
+.section-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-desc {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.form-input::placeholder {
+  color: #555e6d;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.95rem;
+  margin-top: 0.5rem;
+  background-color: var(--color-accent-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.btn-submit:hover,
+.btn-submit:focus-visible {
+  background-color: var(--color-accent-primary-hover);
+  box-shadow: 0 0 14px rgba(230, 126, 34, 0.4);
+}
+
+/* ==========================================================================
+   8. FOOTER Y RESPONSABLE
+   ========================================================================== */
+.site-footer {
+  background-color: #0d0f12;
+  padding: 3rem 0;
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.maintainer-heading {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.maintainer-name {
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+}
+
+.maintainer-name strong {
+  color: var(--color-accent-primary);
+}
+
+.copyright-text {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* ==========================================================================
+   9. ACCESIBILIDAD Y MEDIDAS RESPONSIVAS ADICIONALES
+   ========================================================================== */
+@media (max-width: 640px) {
+  .header-container {
+    flex-direction: column;
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap: 0.75rem;
+  }
+
+  .nav-list {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reducción de animaciones si el usuario lo configuró en su SO */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
