@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perdi MI Mascota: sitio para difundir información sobre perros y gatos perdidos.">
+    <title>Perdi MI Mascota</title>
+    <link rel="stylesheet" href="estilosIA.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="brand" href="index.html" aria-label="Perdi MI Mascota - inicio">
+                <span class="brand-mark" aria-hidden="true">♥</span>
+                <span>Perdi <strong>MI</strong> Mascota</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Navegación principal">
+                <a href="#mascotas">Mascotas perdidas</a>
+                <a href="#contacto">Contacto</a>
+                <a href="#mantenimiento">Quién mantiene el sitio</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div>
+                    <p class="eyebrow">Ayudemos a que vuelvan a casa</p>
+                    <h1>Una mirada puede hacer la diferencia.</h1>
+                    <p class="hero-text">
+                        Información de mascotas perdidas para facilitar su identificación
+                        y ayudar a sus familias a encontrarlas.
+                    </p>
+                    <a class="primary-button" href="#mascotas">Ver mascotas</a>
+                </div>
+                <div class="hero-note" aria-label="Mensaje de ayuda">
+                    <span aria-hidden="true">🐾</span>
+                    <p>Cada dato compartido puede acercar una mascota a su hogar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mascotas" class="pets-section" aria-labelledby="pets-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Listado</p>
+                    <h2 id="pets-title">Mascotas perdidas</h2>
+                    <p>Seleccioná una categoría para consultar los avisos.</p>
+                </div>
+
+                <div class="category-switcher" role="group" aria-label="Categoría de mascotas">
+                    <a class="category-chip active" href="#perros" aria-label="Ver perros perdidos">
+                        <span class="category-icon" aria-hidden="true">🐶</span>
+                        <span>Perros</span>
+                    </a>
+                    <a class="category-chip" href="#gatos" aria-label="Ver gatos perdidos">
+                        <span class="category-icon" aria-hidden="true">🐱</span>
+                        <span>Gatos</span>
+                    </a>
+                </div>
+
+                <div id="perros" class="category-panel">
+                    <div class="category-title">
+                        <span aria-hidden="true">🐶</span>
+                        <h3>Perros</h3>
+                    </div>
+
+                    <div class="pets-grid">
+                        <article class="pet-card">
+                            <div class="pet-image-frame">
+                                <img src="imagenes/perro1.jpeg" alt="Luna, perra mestiza de tamaño mediano">
+                                <a class="info-button" href="info/perro1.pdf">Info <span aria-hidden="true">→</span></a>
+                            </div>
+                            
+                        </article>
+
+                        <article class="pet-card">
+                            <div class="pet-image-frame">
+                                <img src="imagenes/perro2.jpeg" alt="Toby, perro labrador de color dorado">
+                                <a class="info-button" href="info/perro2.pdf">Info <span aria-hidden="true">→</span></a>
+                            </div>
+                            
+                        </article>
+
+                        <article class="pet-card">
+                            <div class="pet-image-frame">
+                                <img src="imagenes/perro3.jpeg" alt="Mora, perra pequeña de pelaje negro y blanco">
+                                <a class="info-button" href="info/perro3.pdf">Info <span aria-hidden="true">→</span></a>
+                            </div>
+                            
+                        </article>
+                    </div>
+                </div>
+
+                <div id="gatos" class="category-panel">
+                    <div class="category-title">
+                        <span aria-hidden="true">🐱</span>
+                        <h3>Gatos</h3>
+                    </div>
+
+                    <div class="pets-grid">
+                        <article class="pet-card">
+                            <div class="pet-image-frame">
+                                <img src="imagenes/gato1.jpeg" alt="Simba, gato naranja de pelo corto">
+                                <a class="info-button" href="info/gato1.pdf">Info <span aria-hidden="true">→</span></a>
+                            </div>
+                           
+                        </article>
+
+                        <article class="pet-card">
+                            <div class="pet-image-frame">
+                                <img src="imagenes/gato2.jpeg" alt="Nina, gata gris y blanca de pelo corto">
+                                <a class="info-button" href="info/gato2.pdf">Info <span aria-hidden="true">→</span></a>
+                            </div>
+                            
+                        </article>
+
+                        <article class="pet-card">
+                            <div class="pet-image-frame">
+                                <img src="imagenes/gato3.jpeg" alt="Felipe, gato atigrado de tamaño mediano">
+                                <a class="info-button" href="info/gato3.pdf">Info <span aria-hidden="true">→</span></a>
+                            </div>
+                            
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact-section" aria-labelledby="contact-title">
+            <div class="container narrow-container">
+                <div class="section-heading">
+                    <p class="eyebrow">Contacto</p>
+                    <h2 id="contact-title">¿Tenés información?</h2>
+                    <p>Completá el formulario para dejar tus datos de contacto.</p>
+                </div>
+
+                <form class="contact-form" action="#" method="post">
+                    <div class="form-field">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="correo">Correo electrónico</label>
+                        <input id="correo" name="correo" type="email" autocomplete="email" required>
+                    </div>
+
+                    <button class="primary-button" type="submit">Enviar información</button>
+                    
+                </form>
+            </div>
+        </section>
+
+        <section id="mantenimiento" class="about-section" aria-labelledby="about-title">
+            <div class="container narrow-container">
+                <div class="about-card">
+                    <p class="eyebrow">Mantenimiento</p>
+                    <h2 id="about-title">Quién mantiene el sitio</h2>
+                    <p>
+                        Este sitio es mantenido por <strong>Javier Arias</strong>,
+                        con el objetivo de centralizar y facilitar la difusión de
+                        información sobre mascotas perdidas.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Perdi MI Mascota · Información para ayudar a volver a casa.</p>
+        </div>
+    </footer>
+</body>
+</html>
