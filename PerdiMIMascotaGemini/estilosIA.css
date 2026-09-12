@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perdí Mi Mascota: Portal comunitario para el reporte y búsqueda de perros y gatos extraviados.">
+  <title>Perdí Mi Mascota</title>
+  <link rel="stylesheet" href="estilosIA.css">
+</head>
+<body>
+  <!-- Enlace accesible de salto al contenido -->
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Encabezado y Navegación Principal -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🐾</span>
+        <span class="brand-title">Perdí Mi Mascota</span>
+      </div>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#mascotas" class="nav-link">Mascotas</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+          <li><a href="#responsable" class="nav-link">Responsable</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido-principal" class="main-content">
+    
+    <!-- Hero / Presentación -->
+    <section class="hero-section">
+      <div class="container hero-content">
+        <h1 class="hero-title">Ayúdanos a devolverlos a su hogar</h1>
+        <p class="hero-subtitle">
+          Explora los reportes recientes de mascotas perdidas. Cada pista cuenta para un reencuentro.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sección del Listado y Filtros -->
+    <section id="mascotas" class="catalog-section" aria-labelledby="titulo-catalogo">
+      <div class="container">
+        <h2 id="titulo-catalogo" class="sr-only">Listado de mascotas perdidas</h2>
+
+        <!-- Segmented Control implementado con CSS Puro (:checked) -->
+        <div class="filter-controls" role="group" aria-label="Filtrar por tipo de mascota">
+          <input type="radio" name="categoria" id="filtro-todos" class="filter-radio" checked>
+          <label for="filtro-todos" class="filter-chip">
+            <span class="chip-icon" aria-hidden="true">🔍</span> Todos
+          </label>
+
+          <input type="radio" name="categoria" id="filtro-perros" class="filter-radio">
+          <label for="filtro-perros" class="filter-chip">
+            <svg class="chip-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M4.5 10.5C3.67 10.5 3 11.17 3 12s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm15 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM12 7.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5zm-5 4c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.07-2.02 3.97L15 19H9l.02-3.53C7.8 14.57 7 13.13 7 11.5z"/>
+            </svg>
+            Perros
+          </label>
+
+          <input type="radio" name="categoria" id="filtro-gatos" class="filter-radio">
+          <label for="filtro-gatos" class="filter-chip">
+            <svg class="chip-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 11c-2.5 0-4.5 2-4.5 4.5S9.5 20 12 20s4.5-2 4.5-4.5S14.5 11 12 11zm-5.5-6L4 9l3.5 1.5L6.5 5zm11 0L16.5 9l3.5 1.5L17.5 5zM12 7c-2.8 0-5.2 1.4-6.6 3.5L8.5 12c1-.6 2.2-1 3.5-1s2.5.4 3.5 1l3.1-1.5C17.2 8.4 14.8 7 12 7z"/>
+            </svg>
+            Gatos
+          </label>
+
+          <!-- Grilla de Tarjetas -->
+          <div class="cards-grid">
+            
+            <!-- PERRO 1 -->
+            <article class="pet-card cat-perros">
+              <div class="card-image-wrapper">
+                <img src="imagenes/perro1.jpg" alt="Fotografía de Rocky, perro mestizo marrón con pecho blanco" class="pet-img" loading="lazy">
+                <span class="category-badge">Perro</span>
+              </div>
+              <div class="card-body">
+                <h3 class="pet-name">Rocky</h3>
+                <p class="pet-meta">Visto por última vez: <strong>Plaza Moreno</strong></p>
+                <p class="pet-desc">Mestizo tamaño mediano, pelaje castaño claro y pecho blanco. Llevaba collar de cuero gastado sin placa.</p>
+                <a href="info/perro1.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Rocky">
+                  <span>Info</span>
+                  <span class="pdf-tag" aria-hidden="true">PDF</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- PERRO 2 -->
+            <article class="pet-card cat-perros">
+              <div class="card-image-wrapper">
+                <img src="imagenes/perro2.jpg" alt="Fotografía de Luna, perra Golden Retriever dorada" class="pet-img" loading="lazy">
+                <span class="category-badge">Perro</span>
+              </div>
+              <div class="card-body">
+                <h3 class="pet-name">Luna</h3>
+                <p class="pet-meta">Vista por última vez: <strong>Parque San Martín</strong></p>
+                <p class="pet-desc">Golden Retriever hembra adulta, color dorado claro. Es muy dócil pero asustadiza con ruidos fuertes.</p>
+                <a href="info/perro2.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Luna">
+                  <span>Info</span>
+                  <span class="pdf-tag" aria-hidden="true">PDF</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- PERRO 3 -->
+            <article class="pet-card cat-perros">
+              <div class="card-image-wrapper">
+                <img src="imagenes/perro3.jpg" alt="Fotografía de Milo, cachorro de manto negro y patas marrones" class="pet-img" loading="lazy">
+                <span class="category-badge">Perro</span>
+              </div>
+              <div class="card-body">
+                <h3 class="pet-name">Milo</h3>
+                <p class="pet-meta">Visto por última vez: <strong>Zona Estación Terminal</strong></p>
+                <p class="pet-desc">Cachorro de 7 meses, manto negro con hocico tostado. Requiere medicación diaria para la piel.</p>
+                <a href="info/perro3.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Milo">
+                  <span>Info</span>
+                  <span class="pdf-tag" aria-hidden="true">PDF</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- GATO 1 -->
+            <article class="pet-card cat-gatos">
+              <div class="card-image-wrapper">
+                <img src="imagenes/gato1.jpg" alt="Fotografía de Oliver, gato atigrado gris con ojos verdes" class="pet-img" loading="lazy">
+                <span class="category-badge">Gato</span>
+              </div>
+              <div class="card-body">
+                <h3 class="pet-name">Oliver</h3>
+                <p class="pet-meta">Visto por última vez: <strong>Barrio Norte</strong></p>
+                <p class="pet-desc">Gato macho castrado, atigrado en tonos grises y blancos. Tiene una pequeña muesca en la oreja izquierda.</p>
+                <a href="info/gato1.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Oliver">
+                  <span>Info</span>
+                  <span class="pdf-tag" aria-hidden="true">PDF</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- GATO 2 -->
+            <article class="pet-card cat-gatos">
+              <div class="card-image-wrapper">
+                <img src="imagenes/gato2.jpg" alt="Fotografía de Mía, gata siamesa con ojos azules" class="pet-img" loading="lazy">
+                <span class="category-badge">Gato</span>
+              </div>
+              <div class="card-body">
+                <h3 class="pet-name">Mía</h3>
+                <p class="pet-meta">Vista por última vez: <strong>Zona Facultad de Informática</strong></p>
+                <p class="pet-desc">Patrón de coloración tipo siamés tradicional, ojos celestes brillantes. Muy tímida ante desconocidos.</p>
+                <a href="info/gato2.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Mía">
+                  <span>Info</span>
+                  <span class="pdf-tag" aria-hidden="true">PDF</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- GATO 3 -->
+            <article class="pet-card cat-gatos">
+              <div class="card-image-wrapper">
+                <img src="imagenes/gato3.jpg" alt="Fotografía de Simón, gato negro de pelo corto con collar rojo" class="pet-img" loading="lazy">
+                <span class="category-badge">Gato</span>
+              </div>
+              <div class="card-body">
+                <h3 class="pet-name">Simón</h3>
+                <p class="pet-meta">Visto por última vez: <strong>Paseo del Bosque</strong></p>
+                <p class="pet-desc">Totalmente negro, contextura esbelta, ojos amarillos. Llevaba collar rojo elástico con cascabel plateado.</p>
+                <a href="info/gato3.pdf" class="btn-info" target="_blank" rel="noopener noreferrer" aria-label="Ver ficha técnica completa en PDF de Simón">
+                  <span>Info</span>
+                  <span class="pdf-tag" aria-hidden="true">PDF</span>
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Información de Contacto -->
+    <section id="contacto" class="contact-section" aria-labelledby="titulo-contacto">
+      <div class="container form-container">
+        <h2 id="titulo-contacto" class="section-title">Información de Contacto</h2>
+        <p class="section-desc">¿Viste a alguna de las mascotas o necesitas reportar una? Déjanos tus datos.</p>
+        
+        <!-- Formulario preparado para endpoints backend como Formspree o controladores POST -->
+        <form class="contact-form" action="#" method="POST" novalidate>
+          <div class="form-group">
+            <label for="nombre" class="form-label">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Ej. Juan Pérez" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" class="form-input" placeholder="nombre@ejemplo.com" required autocomplete="email">
+          </div>
+          <button type="submit" class="btn-submit">Enviar Notificación</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de Página e Información del Mantenedor -->
+  <footer id="responsable" class="site-footer">
+    <div class="container footer-content">
+      <div class="maintainer-info">
+        <h3 class="maintainer-heading">Mantenimiento del sitio</h3>
+        <p class="maintainer-name">Desarrollado y gestionado por <strong>Javier Arias</strong></p>
+      </div>
+      <p class="copyright-text">&copy; 2026 Perdí Mi Mascota. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
